@@ -1,21 +1,17 @@
 package shubhamk.com.locationdetector;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,15 +23,16 @@ import com.google.android.gms.common.api.ResultCallback;
 
 
 public class MainActivity extends AppCompatActivity {
+    TextView lat, lon;
+    Button getLocation, openMap;
+    Double latitude = null, longitude = null;
+    GoogleApiClient apiClient;
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
-    TextView lat,lon;
-    Button getLocation;
-    Double latitude,longitude;
-     GoogleApiClient apiClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         lat=(TextView)findViewById(R.id.getlat);
         lon=(TextView)findViewById(R.id.getlon);
         getLocation=(Button)findViewById(R.id.getlocation);
+        openMap = (Button) findViewById(R.id.openMap);
         apiClient = new GoogleApiClient.Builder(this)
                 .addApi(Awareness.API)
                 .build();
@@ -79,14 +77,23 @@ public class MainActivity extends AppCompatActivity {
                                 longitude=location.getLongitude();
                             }
                         });
-                Intent intent = new Intent(getApplicationContext(),Maps.class);
-                intent.putExtra("Lat",latitude);
-                intent.putExtra("Lon",longitude);
-                startActivity(intent);
+
             }
         });
 
-
+        openMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (longitude != null && latitude != null) {
+                    Intent intent = new Intent(getApplicationContext(), Maps.class);
+                    intent.putExtra("Lat", latitude);
+                    intent.putExtra("Lon", longitude);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Click the get location button", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
     }

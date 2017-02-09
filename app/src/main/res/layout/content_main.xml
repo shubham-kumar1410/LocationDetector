@@ -10,37 +10,46 @@
     tools:showIn="@layout/activity_main">
 
     <Button
+        android:id="@+id/getlocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/getlocation"
-        android:text="Get Location"
-        android:layout_marginTop="30dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Get Location" />
     <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="40dp"
         android:layout_below="@+id/getlocation"
-        android:id="@+id/linear">
+        android:layout_margin="40dp"
+        android:orientation="horizontal">
 
     <TextView
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
         android:id="@+id/getlat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:gravity="center"
         android:text="LAT">
 
     </TextView>
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
             android:id="@+id/getlon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="LON"
         />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/openMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Open Map" />
 </RelativeLayout>

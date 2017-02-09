@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LocationDetector</string>
+    <string name="app_name">Location Detector</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_maps">Map</string>
 </resources>
